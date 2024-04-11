@@ -1,0 +1,57 @@
+POST http://localhost:3333/gym
+Content-Type: application/json
+
+{
+  "name": "black and white academy"
+}
+
+###
+
+POST http://localhost:3333/gym/black-and-white-academy/clients
+Content-Type: application/json
+
+{
+  "name": "Maicon Silva",
+  "cpf": "345654864344",
+  "phoneNumber": "58668777",
+  "paymentDay": 10,
+  "adress": "rua pitombeira",
+  "adressNumber": "1400"
+}
+
+###
+
+POST http://localhost:3333/gym/dark-muscle/clients
+Content-Type: application/json
+
+{
+  "name": "Maicon",
+  "cpf": "45344943023",
+  "phoneNumber": "47028933",
+  "paymentDay": 5,
+  "adress": "rua pitombeira",
+  "adressNumber": "1095"
+}
+
+
+###
+
+GET http://localhost:3333/clients/gym/black-and-white-academy
+
+###
+
+GET http://localhost:3333/clients/gym/black-and-white-academy?
+
+###
+
+GET http://localhost:3333/clients/55379141-c4bf-43dd-9df2-d50ddc96e823/maicon-silva
+
+
+### 
+
+GET http://localhost:3333/black-and-white-academy/late_payment
+
+
+###
+
+DELETE http://localhost:3333/black-and-white-academy/remove/26783f66-d468-4c57-8a62-3d2554a80e19/late_payment

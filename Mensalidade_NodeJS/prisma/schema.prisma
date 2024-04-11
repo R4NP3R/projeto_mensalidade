@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Gyms {
+  id    Int    @id @default(autoincrement())
+  gymId String @unique
+  name  String @unique
+
+  client Client[]
+
+  @@map("tb_gyms")
+}
+
+model Client {
+  id             String       @id @default(uuid())
+  name           String
+  cpf            String       @unique
+  phoneNumber    String       @unique
+  initialDate    DateTime     @default(now()) @map("initial_date")
+  paymentDayDate DateTime     @map("payment_day_date")
+  adress         String
+  adressNumber   String
+  slug           String
+  latePayment    latePayment?
+  gym            Gyms         @relation(fields: [gymId], references: [gymId], onDelete: Cascade)
+  gymId          String
+
+  @@map("tb_clients")
+}
+
+model latePayment {
+  id       String   @id @default(uuid())
+  debtAt   DateTime @default(now())
+  client   Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId String   @unique @map("client_id")
+
+  @@map("tb_late_payment")
+}
