@@ -12,8 +12,8 @@ Content-Type: application/json
 
 {
   "name": "Maicon Silva",
-  "cpf": "345654864344",
-  "phoneNumber": "58668777",
+  "cpf": "34565486477",
+  "phoneNumber": "11565486477",
   "paymentDay": 10,
   "adress": "rua pitombeira",
   "adressNumber": "1400"
@@ -40,8 +40,7 @@ GET http://localhost:3333/clients/gym/black-and-white-academy
 
 ###
 
-GET http://localhost:3333/clients/gym/black-and-white-academy?
-
+GET http://localhost:3333/clients/gym/black-and-white-academy
 ###
 
 GET http://localhost:3333/clients/55379141-c4bf-43dd-9df2-d50ddc96e823/maicon-silva
@@ -55,3 +54,8 @@ GET http://localhost:3333/black-and-white-academy/late_payment
 ###
 
 DELETE http://localhost:3333/black-and-white-academy/remove/26783f66-d468-4c57-8a62-3d2554a80e19/late_payment
+
+
+###
+
+DELETE http://localhost:3333/clients/black-and-white-academy/01066ad0-8cd8-478d-80ae-ca56f6c31d8e/remove

@@ -38,6 +38,7 @@ export async function getLatePayment(app:FastifyInstance) {
     }
   })  
 
+
   if (latePayment.every(client => client.id)) {
     for (const client of latePayment) {
       const paymentDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), client.paymentDayDate.getDate())
@@ -64,7 +65,4 @@ export async function getLatePayment(app:FastifyInstance) {
     })
   })
 })
-
-  
-  
 }

@@ -13,7 +13,7 @@ export async function getClientList(app:FastifyInstance) {
       }),
       querystring: z.object({
         query: z.string().nullish(),
-        indexPage: z.string().nullish().default('0').transform(Number),        
+        pageIndex: z.string().nullish().default('0').transform(Number),        
       }),
       response: {
         200: z.object({
@@ -31,15 +31,16 @@ export async function getClientList(app:FastifyInstance) {
               latePayment: z.date().nullable(),
               slug: z.string(),
             })
-          )
+          ),
+          total: z.number()
         })
       }
     }
   }, async (request, reply) => {
     const { gymId } = request.params
-    const { indexPage , query} = request.query
+    const { pageIndex , query} = request.query
 
-    const [client] = await Promise.all([
+    const [client, total] = await Promise.all([
       await prisma.client.findMany({
         select: {
           id: true,
@@ -64,9 +65,20 @@ export async function getClientList(app:FastifyInstance) {
           gymId
         },
         take: 10,
-        skip: indexPage * 10,
+        skip: pageIndex * 10,
         orderBy: {
-          initialDate: 'desc'
+          name: 'asc'
+        }
+      }),
+      await prisma.client.count({
+        where: query ? {
+          gymId,
+          name: {
+            contains: query,
+            mode: 'insensitive'
+          }
+        } : {
+          gymId
         }
       })
     ])
@@ -86,7 +98,8 @@ export async function getClientList(app:FastifyInstance) {
           latePayment: client.latePayment?.debtAt ?? null,
           slug: client.slug,
         }
-      })
+      }),
+      total
     })
   })  
   

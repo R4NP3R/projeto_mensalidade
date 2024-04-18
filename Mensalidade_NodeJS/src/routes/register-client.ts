@@ -16,7 +16,7 @@ export async function registerClient(app:FastifyInstance) {
       body: z.object({
         name: z.string(),
         cpf: z.string().min(11).max(11),
-        phoneNumber: z.string(),
+        phoneNumber: z.string().min(11).max(11),
         paymentDay: z.number().min(1).max(30),
         adress: z.string(),
         adressNumber: z.string(),

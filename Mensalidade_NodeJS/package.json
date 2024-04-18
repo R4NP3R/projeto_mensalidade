@@ -11,6 +11,9 @@
     "db:studio": "npx prisma studio"
   },
   "keywords": [],
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -19,6 +22,7 @@
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "^5.12.1",
     "@types/node": "^20.12.6",
+    "dayjs": "^1.11.10",
     "fastify": "^4.26.2",
     "fastify-type-provider-zod": "^1.1.9",
     "fastify-zod": "^1.4.0",
@@ -30,5 +34,8 @@
     "tsx": "^4.7.2",
     "typescript": "^5.4.4",
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1"
   }
 }

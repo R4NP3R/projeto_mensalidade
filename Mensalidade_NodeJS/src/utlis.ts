@@ -8,3 +8,4 @@ export function generateSlug(text: string): string {
 }
 
 export const currentDate = new Date()
+
