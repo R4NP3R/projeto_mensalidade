@@ -7,33 +7,21 @@ const fetchClient = async (page?: number, search?: string): AxiosPromise<ClientR
     const pageIndex = page !== undefined ? page : 0
     const searchParam = search !== undefined ? search : ''
     const response = await axios.get<ClientResponse>(`${API_URL}/clients/gym/black-and-white-academy?query=${searchParam}&pageIndex=${pageIndex}`)
-
     return response
-
 }
 
 
 export function getClientData(page?: number, search?: string) {
+  console.log('Chamou!')
   const query = useQuery({
     queryKey: ['client', page, search],
-    queryFn: () => fetchClient(page, search),    
+    queryFn: () => fetchClient(page, search)
   })
 
   return {
     ...query,
-    data: query.data?.data
-  }
-}
-
-export function getClientQuantity() {
-  const query = useQuery({
-    queryKey: ['client-quantity'],
-    queryFn: () => fetchClient()    
-  })
-
-  return {
-    ...query,
+    total: query.data?.data.total,
     clients: query.data?.data.clients,
-    total: query.data?.data.total
+    data: query.data?.data
   }
 }

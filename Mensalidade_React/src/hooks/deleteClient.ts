@@ -11,6 +11,7 @@ export function deleteClient() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['client']})
+      queryClient.invalidateQueries({ queryKey: ['client-quantity']})
     }
   })
 

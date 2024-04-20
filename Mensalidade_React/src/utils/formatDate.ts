@@ -6,3 +6,5 @@ export const formatDate = (dateString: string) => {
 
   return `${day}/${month}/${year}`;
 };
+
+export const currentDate = new Date()
