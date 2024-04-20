@@ -6,6 +6,8 @@ import { prisma } from "../lib/prisma";
 export async function RemoveClient(app:FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().delete('/clients/:gymId/:clientId/remove', {
     schema: {
+      summary: 'delete client',
+      tags: ['clients'],
       params: z.object({
         gymId: z.string(),
         clientId: z.string(),

@@ -5,12 +5,13 @@ import fastify from "fastify";
 import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 import { errorHandler } from "./error-handler";
 import { createGym } from "./routes/create-gym";
+import { RemoveClient } from "./routes/delete-client";
+import { removeClientLatePayment } from "./routes/delete-client-late-payment";
 import { getClients } from "./routes/get-client";
 import { getClientList } from "./routes/get-client-list";
 import { getLatePayment } from "./routes/get-late-payment";
-import { registerClient } from "./routes/register-client";
-import { RemoveClient } from "./routes/remove-client";
-import { removeClientLatePayment } from "./routes/remove-client-late-payment";
+import { registerClient } from "./routes/post-client";
+import { putClient } from "./routes/put-client";
 
 
 const app = fastify()
@@ -46,6 +47,7 @@ app.register(getClients)
 app.register(getLatePayment)
 app.register(removeClientLatePayment)
 app.register(RemoveClient)
+app.register(putClient)
 
 app.setErrorHandler(errorHandler)
 

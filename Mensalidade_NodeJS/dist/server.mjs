@@ -1,26 +1,32 @@
 import {
-  registerClient
-} from "./chunk-AVKGTWUO.mjs";
+  getLatePayment
+} from "./chunk-2PISXJM2.mjs";
 import {
-  removeClientLatePayment
-} from "./chunk-FNX4YZUV.mjs";
+  registerClient
+} from "./chunk-AGFU4Q4W.mjs";
+import {
+  putClient
+} from "./chunk-YWWELQRF.mjs";
 import {
   errorHandler
-} from "./chunk-AX7MF2JY.mjs";
+} from "./chunk-RQM7Z7ZF.mjs";
 import {
   createGym
 } from "./chunk-SC2BOPNS.mjs";
+import {
+  removeClientLatePayment
+} from "./chunk-ZD2CGJKH.mjs";
 import "./chunk-A42IFF2V.mjs";
+import "./chunk-NOVRIJ2H.mjs";
+import {
+  RemoveClient
+} from "./chunk-IKI4OZYL.mjs";
 import {
   getClientList
-} from "./chunk-T7EW2JTR.mjs";
+} from "./chunk-7X6LT27P.mjs";
 import {
   getClients
 } from "./chunk-TQSOARZG.mjs";
-import {
-  getLatePayment
-} from "./chunk-OPFBS3W7.mjs";
-import "./chunk-NOVRIJ2H.mjs";
 import "./chunk-JV6GRE7Y.mjs";
 
 // src/server.ts
@@ -56,6 +62,8 @@ app.register(getClientList);
 app.register(getClients);
 app.register(getLatePayment);
 app.register(removeClientLatePayment);
+app.register(RemoveClient);
+app.register(putClient);
 app.setErrorHandler(errorHandler);
 app.listen({ port: 3333, path: "0.0.0.0" }, () => {
   console.log("aplica\xE7\xE3o iniciada");

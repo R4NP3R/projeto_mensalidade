@@ -46,6 +46,8 @@ export async function registerClient(app:FastifyInstance) {
       }
     })
     
+    console.log(`cpf: ${clientWithSameCPf?.cpf}, ${clientWithSameCPf?.name}`)
+
 
     if (clientWithSameCPf !== null) {
       throw new BadRequest("Client with same CPF already exists.")

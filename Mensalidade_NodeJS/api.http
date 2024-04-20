@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "name": "Maicon Silva",
-  "cpf": "34565486477",
+  "cpf": "22259451180",
   "phoneNumber": "11565486477",
   "paymentDay": 10,
   "adress": "rua pitombeira",
@@ -43,7 +43,7 @@ GET http://localhost:3333/clients/gym/black-and-white-academy
 GET http://localhost:3333/clients/gym/black-and-white-academy
 ###
 
-GET http://localhost:3333/clients/55379141-c4bf-43dd-9df2-d50ddc96e823/maicon-silva
+GET http://localhost:3333/clients/00b76809-5793-4955-bbd6-08ba139470e1/chelsea-koch
 
 
 ### 
@@ -59,3 +59,17 @@ DELETE http://localhost:3333/black-and-white-academy/remove/26783f66-d468-4c57-8
 ###
 
 DELETE http://localhost:3333/clients/black-and-white-academy/01066ad0-8cd8-478d-80ae-ca56f6c31d8e/remove
+
+###
+
+PUT http://localhost:3333/clients/03e939cf-413b-46d3-ab63-0552e0956ca5/edit
+Content-Type: application/json
+
+{
+  "cpf": "44444444444",
+  "phoneNumber": "11963845436",
+  "paymentDay": 15,
+  "name": "Nerso rosadinho",
+  "adress": "macaco loko",
+  "adressNumber": "1900"
+}
