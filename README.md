@@ -9,6 +9,7 @@ Fiz esse programa baseado em um projeto da Rocketseat feito em uma NLW, porém d
 
 ### [`Front-End`](https://github.com/R4NP3R/projeto_mensalidade/tree/main/Mensalidade_React)
 - **React**
+- **TypeScript**
 - **React Query**
 - **Axios**
 - **TailwindCSS**
@@ -21,6 +22,7 @@ A parte do `Front-End` foi feita com `React` usei essa **Biblioteca**, porquê a
 ### [`Back-End`](https://github.com/R4NP3R/projeto_mensalidade/tree/main/Mensalidade_NodeJS)
 
 - **Node.JS**
+- **TypeScript**
 - **Fastify**
 - **Prisma**
 - **Zod**
