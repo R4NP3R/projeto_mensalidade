@@ -7,7 +7,7 @@ Fiz esse programa baseado em um projeto da Rocketseat feito em uma NLW, porém d
 
 ## **Tecnologias**
 
-### **Front-End**
+### [`Front-End`](https://github.com/R4NP3R/projeto_mensalidade/tree/main/Mensalidade_React)
 - **React**
 - **React Query**
 - **Axios**
@@ -18,7 +18,7 @@ Fiz esse programa baseado em um projeto da Rocketseat feito em uma NLW, porém d
 
 A parte do `Front-End` foi feita com `React` usei essa **Biblioteca**, porquê além de ser usada no projeto do evento da NLW é a que eu tenho mais conhecimento dentro do desenvolvimento `Front-End`. E para gerenciamento de requisições **REST** eu decidi usar o `React Query` e o `Axios`, na estilização do projeto decidi usar o `TailwindCSS` por que não é necessário criar arquivos de css separado para estilização e é bem fácil de entender, em animações simples usei a biblioteca `Motion Framer`, no gerenciamento dos formulários usei `React-Hook-forms` e `Zod` para validação dos dados
 
-### **Back-End**
+### [`Back-End`](https://github.com/R4NP3R/projeto_mensalidade/tree/main/Mensalidade_NodeJS)
 
 - **Node.JS**
 - **Fastify**
