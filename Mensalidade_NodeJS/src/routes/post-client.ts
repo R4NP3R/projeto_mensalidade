@@ -30,7 +30,7 @@ export async function registerClient(app:FastifyInstance) {
     const {gymId} = request.params
 
     
-    const paymentDayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), paymentDay)
+    const paymentDayDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, paymentDay)
 
     const slug = generateSlug(name)
 
@@ -50,11 +50,11 @@ export async function registerClient(app:FastifyInstance) {
 
 
     if (clientWithSameCPf !== null) {
-      throw new BadRequest("Client with same CPF already exists.")
+      throw new BadRequest("Cliente com o mesmo CPF já existe.")
     }
 
     if (clientWithSamePhoneNumber !== null) {
-      throw new BadRequest("Client with same phone number already exists.")
+      throw new BadRequest("Cliente com o mesmo número de telefone já existe.")
     }
 
     const client = await prisma.client.create({
