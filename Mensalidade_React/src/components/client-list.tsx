@@ -3,6 +3,8 @@ import 'dayjs/locale/pt-br'
 import relativeTime from "dayjs/plugin/relativeTime"
 import { Check, ChevronLeft, ChevronRight, LoaderCircle, MoreHorizontal, UserRoundSearch, X } from "lucide-react"
 import { ChangeEvent, useEffect, useRef, useState } from "react"
+import { Link, useLocation, useSearchParams } from "react-router-dom"
+import { twMerge } from "tailwind-merge"
 import { getClientData } from "../hooks/getClientData"
 import { Clients } from "../interfaces/clients"
 import { formatDate } from "../utils/formatDate"
@@ -17,57 +19,44 @@ dayjs.extend(relativeTime)
 dayjs.locale('pt-br')
 
 export const ClientList = () => {
-  // Variables/Fuctions used on Search Bar
+  const location = useLocation();
+  // Variables/Functions used on Search Bar
+  const [searchParams, setSearchParams] = useSearchParams()
   const [search, setSearch] = useState(() => {
-    const url = new URL(window.location.toString())
+    // const url = new URL(window.location.toString())
     
-    if(url.searchParams.has('search')) {    
-      return url.searchParams.get('search') ?? ''
+    if(searchParams.has('search')) {  
+      return searchParams.get('search') ?? ''
     }
 
-    
     
     return ''
   })
-
-  useEffect(() => {    
-    const url = new URL(window.location.toString())      
-    
-    window.history.pushState({}, "" , url)
-    if (search.length > 0) {
-      url.searchParams.set('page', '1')
-    }
-  },[search])
     
   function onInputSearchChange(input: ChangeEvent<HTMLInputElement>) {
     setCurrentSearch(input.target.value)
-    setCurrentPage(1)
+    setCurrentPage(input.target.value, 1)
+
   }
 
   function setCurrentSearch(search: string) {
-    const url = new URL(window.location.toString())
-    url.searchParams.set('search', search)
-
-    window.history.pushState({}, "" , url)
+    // const url = new URL(window.location.toString())    
     
+    // window.history.pushState({}, "" , url)
+
+    // const params = new URLSearchParams(location.search);
+    // params.set('search', search);   
+    
+    setSearchParams({page: page.toString(), search: search})
     setSearch(search)
-    setPage(1)
   }
 
 
-  function setCurrentPage(page?: number) {
-    const url = new URL(window.location.toString())   
-    
-    url.searchParams.set('page', String(page))
-    
-    window.history.pushState({}, "" , url)    
 
-    if (page)
-    setPage(page)
-  } 
 
   // Variables/Fuctions used on <tbody/>
   const [openClientMenuId, setOpenClientMenuId] = useState<String | null>(null)
+  const [openGuideMenu, setOpenGuideMenu] = useState(false)
   const clientOptionMenuRef = useRef<HTMLDivElement>(null);  
 
   function handleOpenClientMenuId(cliente: Clients) {    
@@ -80,14 +69,15 @@ export const ClientList = () => {
   }  
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    function handleClickOutsideMenuId(event: MouseEvent) {
       if (clientOptionMenuRef.current && !clientOptionMenuRef.current.contains(event.target as Node)) {
-        setOpenClientMenuId(null); 
+        setOpenClientMenuId(null);
+        setOpenGuideMenu(false)
       }} 
 
-    document.addEventListener("mousedown", handleClickOutside);  
+    document.addEventListener("mousedown", handleClickOutsideMenuId);  
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutsideMenuId);
     }
   }, [])
 
@@ -95,29 +85,41 @@ export const ClientList = () => {
 
   // Variables/Fuctions used on <tfoot/>
   const [page, setPage] = useState(() => {
-    const url = new URL(window.location.toString())
-  
-    if (url.searchParams.has('page')) {
-      return Number(url.searchParams.get('page'))
+    // const url = new URL(window.location.toString())  
+    if (searchParams.has('page')) {
+      return Number(searchParams.get('page'))
     }
-  
+    
     return 1
   })
 
+    function setCurrentPage(search: string, page?: number, ) {
+    // const url = new URL(window.location.toString())   
+    
+    // url.searchParams.set('page', String(page))
+    // window.history.pushState({}, "" , url)    
+    
+    if (page) {
+      setSearchParams({page: page.toString(), search: search})
+      setPage(page)
+      setSearch(search)
+    }    
+  } 
+
   function goToFirstPage() {
-    setCurrentPage(1)
+    setCurrentPage(search, 1)
   }
   
   function goToLastPage() {
-    setCurrentPage(totalPages)
+    setCurrentPage(search, totalPages)
   }
   
   function goToNextPage() {
-    setCurrentPage(page + 1)
+    setCurrentPage(search, page + 1,)
   }
   
   function goToPreviousPage() {
-    setCurrentPage(page - 1)
+    setCurrentPage(search, page - 1)
   }
 
   // Fetch with react Query
@@ -127,6 +129,17 @@ export const ClientList = () => {
 
   // General Variables
   const totalPages = quantity && Math.ceil(quantity / 10)
+
+  useEffect(() => {    
+
+
+    const params = new URLSearchParams(location.search)
+    const pageParam = params.get('page') || 0 
+    const searchParam = params.get('search') || ''  
+    setCurrentPage(search, Number(pageParam),) 
+    setCurrentSearch(searchParam)
+  }, [page])
+
   return (
     <>
     <div className="inline-flex items-center p-1 border border-slate-400 focus-within:border-slate-500 w-64 rounded-md">
@@ -138,7 +151,7 @@ export const ClientList = () => {
         <thead >
             <tr className="border-slate-400 rounded-lg">
               <TableHeader style={{width: 48}} className="rounded-l-lg">
-                <input type="checkbox" />
+                {/* <input type="checkbox" /> */}
               </TableHeader>
               <TableHeader className="w-[485px]">Cliente</TableHeader>
               <TableHeader className="w-[233px]">Data De inicio</TableHeader>
@@ -169,7 +182,7 @@ export const ClientList = () => {
             return (
               <tr key={i} className="group/payment first:border-0 border-t border-slate-400 hover:bg-slate-300/40">
                 <TableCell style={{width: 48}} className="py-2 px-4 text-sm">
-                    <input type="checkbox" />
+                    {/* <input type="checkbox" /> */}
                 </TableCell>
                 <TableCell className="py-2 px-4 text-sm w-[485px]">
                   <div className="flex flex-col text-sm">
@@ -212,14 +225,19 @@ export const ClientList = () => {
                   <ChevronLeft size={18} className="py-1 px-1"/>
                 </Button>
             </TableCell>
-            <TableCell colSpan={3} className="w-[1070px]">
+            <TableCell colSpan={3} className="w-[1070px] relative">
               <div className="w-full flex items-center justify-center ">
                   <Button onClick={goToFirstPage} disabled={page === 1} list>
                     <p className="text-xs w-4 h-4">1</p>
-                  </Button>
-                  <Button list>
+                  </Button >
+                  <Button list onClick={() => setOpenGuideMenu(true)}>
                     <MoreHorizontal size={18}/>
                   </Button>
+                  <div ref={clientOptionMenuRef} className={twMerge("absolute flex items-center flex-col-reverse w-16 bg-slate-300 bottom-[45px] max-h-[280px] overflow-y-scroll scroll-smooth scrollbar rounded-lg", (totalPages ? totalPages : 0) < 10 && 'overflow-hidden')}>
+                    {openGuideMenu && Array.from({length: totalPages ? totalPages : 0}).map((_, i) => (
+                    <Link key={i} onClick={() => {setOpenGuideMenu(false); setPage(i + 1)}} className="px-3 py-1 w-full text-center hover:bg-slate-100" to={search.length > 0 ? `/?page=${i + 1}/&search=${search}` : `/?page=${i + 1}`}>{i + 1}</Link>
+                    ))}
+                  </div>
                   <Button list onClick={goToLastPage} disabled={page === totalPages}>
                     <p className="text-xs w-4 h-4">{totalPages ? totalPages : 0}</p>
                   </Button>

@@ -38,7 +38,6 @@ export const ClientOptionMenu = ({client, ...props}:Props) => {
   const {register, 
     handleSubmit, 
     formState: {errors},
-    getValues,
   } = useForm<clientInfoSchema>({
     resolver: zodResolver(clientInfoSchema)
   })
