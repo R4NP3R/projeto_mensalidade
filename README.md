@@ -5,6 +5,9 @@
 Fiz esse programa baseado em um projeto da Rocketseat feito em uma NLW, porém decidir mudar algumas lógicas de negócio e adicionar coisas na base do projeto, a idéia que eu tive foi:
 **"Como o professor de uma academia sabe se o aluno pagou a mensalidade, sendo que ele não tem nenhum tipo de controle"**, então decidi criar esse site para controle de mensalidade de clientes, baseado na ideia de ajudar no gerenciamento de pagamentos atrasados, é um projeto simples, e por enquanto manual mas futuramente podendo escalar para algo mais automatizado.
 
+## **Video de Apresentação**
+https://www.linkedin.com/feed/update/urn:li:activity:7189324484359634944/
+
 ## **Tecnologias**
 
 ### [`Front-End`](https://github.com/R4NP3R/projeto_mensalidade/tree/main/Mensalidade_React)
