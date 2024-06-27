@@ -15,9 +15,9 @@ import lombok.Setter;
 public class Gym {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(nullable = false)
-    private String Id;
+    private Integer Id;
 
     @Column(nullable = false)
     private String name;
