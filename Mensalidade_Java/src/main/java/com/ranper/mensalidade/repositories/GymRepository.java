@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface GymRepository extends JpaRepository<Gym, Integer> {
 
-    Optional<Gym> findByGymId(String gymId);
+    Optional<Gym> findBygymid(String gymId);
 }

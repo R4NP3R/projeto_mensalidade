@@ -48,5 +48,4 @@ public class Client {
     @JoinColumn(name = "gym_id", nullable = false)
     private Gym gym;
 
-
 }
