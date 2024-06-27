@@ -20,8 +20,8 @@ public class Gym {
     private Integer Id;
 
     @Column(nullable = false)
-    private String name;
+    private String gymId;
 
     @Column(nullable = false)
-    private String slug;
+    private String name;
 }
