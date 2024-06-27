@@ -8,5 +8,5 @@ CREATE TABLE clients (
     payment_day TIMESTAMP NOT NULL,
     address VARCHAR(255) NOT NULL,
     address_number VARCHAR(255) NOT NULL,
-    CONSTRAINT client_gym_id_fkey FOREIGN KEY (gym_id) REFERENCES gyms(id) ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT client_gym_id_fkey FOREIGN KEY (gym_id) REFERENCES gyms(gymId) ON DELETE RESTRICT ON UPDATE CASCADE
 )
