@@ -1,0 +1,1 @@
+ALTER TABLE late_payment ADD CONSTRAINT late_payment_client_id_fkey FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE RESTRICT ON UPDATE CASCADE
