@@ -1,5 +1,7 @@
 package com.ranper.mensalidade.controllers;
 
+import com.ranper.mensalidade.dto.clients.ClientIdDTO;
+import com.ranper.mensalidade.dto.clients.ClientRequestDTO;
 import com.ranper.mensalidade.dto.gyms.GymIdDTO;
 import com.ranper.mensalidade.dto.gyms.GymRequestDTO;
 import com.ranper.mensalidade.dto.gyms.GymResponseDTO;
@@ -29,5 +31,15 @@ public class GymController {
         var uri = uriComponentsBuilder.path("/gym/${gymId}").buildAndExpand(gymIdDTO.GymId()).toUri();
 
         return ResponseEntity.created(uri).body(gymIdDTO);
+    }
+
+    @PostMapping("/{gymId}/clients")
+    public ResponseEntity<ClientIdDTO> registerClient(@RequestBody ClientRequestDTO body, @PathVariable String gymId, UriComponentsBuilder uriComponentsBuilder) {
+        ClientIdDTO clientIdDTO = gymService.registerClientOnGym(body, gymId);
+
+        var uri = uriComponentsBuilder.path("/clients/{clientId}").buildAndExpand(clientIdDTO.Id()).toUri();
+
+
+        return ResponseEntity.created(uri).body(clientIdDTO);
     }
 }
